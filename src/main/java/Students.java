@@ -27,7 +27,31 @@ public class Students {
         this.gradeYear = scan.nextInt();
         setStudentId();
 
-
         scan.close();
+    }
+
+    public void enroll(){
+        do {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter course to enroll (Q to quit)");
+            String course = scan.nextLine();
+            if (!course.equalsIgnoreCase("q")){
+                courses =courses +"\n" + course ;
+                tutionBalance += costOfCourse;
+            }else {
+                break;
+            }
+        }while (true);
+        System.out.println("You enrolled in: " + courses);
+    }
+
+    public void payTution(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Your balance: $" + tutionBalance);
+        System.out.println("How much do you want to pay?");
+        int payment = scan.nextInt();
+        tutionBalance = tutionBalance - payment;
+        System.out.println("Thanks for payment of $" + payment);
+        System.out.println("Your new tuition balance $" + tutionBalance);
     }
 }
