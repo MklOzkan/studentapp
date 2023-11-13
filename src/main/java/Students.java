@@ -1,7 +1,5 @@
 import javax.sound.midi.Soundbank;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Students {
 
@@ -11,14 +9,13 @@ public class Students {
     private String lastName;
     private int gradeYear;
     private String courses="";
-    private static final int costOfCourse =600;
+    private static  int costOfCourse =600;
     private int tuitionBalance;
 
     public void setStudentId() {
         id++;
         this.studentId =gradeYear+""+id;// according to grade year and id, student id will be set
     }
-
     public Students(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter student's first name:");
@@ -30,9 +27,7 @@ public class Students {
         this.gradeYear = scan.nextInt();
         setStudentId();
 
-        scan.close();
     }
-
     public void enroll(){
         do {
             Scanner scan = new Scanner(System.in);
@@ -44,7 +39,6 @@ public class Students {
             }else {
                 break;
             }
-            scan.close();
         }while (true);
         System.out.println("You enrolled in: " + courses);
 
@@ -58,7 +52,6 @@ public class Students {
         tuitionBalance = tuitionBalance - payment;
         System.out.println("Thanks for payment of $" + payment);
         System.out.println("Your new tuition balance $" + tuitionBalance);
-        scan.close();
     }
 
     @Override
@@ -77,6 +70,7 @@ public class Students {
     public static void addStudentsMap(){
         Scanner scan = new Scanner(System.in);
         String stop = "";
+        String goOn = "";
         while (!stop.equalsIgnoreCase("s")){
             Students s = new Students();
             s.enroll();
@@ -85,8 +79,9 @@ public class Students {
             System.out.println("Press 'S' to stop entrance");
             System.out.println("Press Enter to go on entrance");
             stop = scan.nextLine();
+            selectOptions();
+
         }
-        scan.close();
     }
 
     public static void getStudentInformation(){
@@ -101,6 +96,7 @@ public class Students {
             if (!idOfStudent.equalsIgnoreCase("X")){
                 System.out.println(result);
             }
+            System.out.println("Enter a valid student id");
 
         }while (!idOfStudent.equalsIgnoreCase("X"));
     }
